@@ -1,0 +1,315 @@
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.bg-unum-blue {
+  background-color: #015294; }
+
+.bg-unum-slate {
+  background-color: #5A7184; }
+
+.bg-unum-pool {
+  background-color: #47B4BC; }
+
+.bg-unum-gold {
+  background-color: #FAC832; }
+
+.bg-unum-lawn {
+  background-color: #8CC442; }
+
+.bg-white {
+  background-color: white; }
+
+.bg-black {
+  background-color: black; }
+
+.bg-light-grey-light-4 {
+  background-color: #f7f7f7; }
+
+.bg-neutral-dark-grey {
+  background-color: #2E2E2E; }
+
+.bg-neutral-light-grey-3 {
+  background-color: #E9E9E9; }
+
+.bg-neutral-light-grey-4 {
+  background-color: #F7F7F7; }
+
+.bg-colonial-steel-blue {
+  background-color: #19557F; }
+
+.bg-colonial-slate {
+  background-color: #5B7183; }
+
+.bg-colonial-mint {
+  background-color: #1A8573; }
+
+.bg-colonial-leaf {
+  background-color: #78B25D; }
+
+.bg-colonial-ocean {
+  background-color: #3BAECC; }
+
+.bg-colonial-asparagus {
+  background-color: #A4CC44; }
+
+.bg-colonial-tangerine {
+  background-color: #F1C44F; }
+
+.bg-colonial-pumpkin {
+  background-color: #F38130; }
+
+.bg-colonial-dark-red {
+  background-color: #7F2725; }
+
+.bg-colonial-sand {
+  background-color: #E0DDCE; }
+
+.bg-colonial-moss {
+  background-color: #537650; }
+
+.bg-colonial-grape {
+  background-color: #5F3A6C; }
+
+.myColorPicker {
+  padding-left: 5px; }
+
+.myColorPickerColorRow {
+  display: flex;
+  justify-content: center; }
+
+.myColorPickerColorRow--middle {
+  margin-top: 3px;
+  margin-bottom: 3px; }
+
+.myColorPicker button {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  border: 1px solid;
+  cursor: pointer;
+  margin-right: 3px;
+  transition: all .2s ease-in-out; }
+  .myColorPicker button:hover {
+    transform: scale(1.1); }
+
+.cpTooltip {
+  border: 0;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: -30px;
+  border: 1px solid #2E2E2E;
+  margin-top: 5px; }
+
+.tooltipster-sidetip .tooltipster-box {
+  background: white; }
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+  border-top-color: white; }
+
+.colorboxFlex {
+  display: flex;
+  align-items: center; }
+
+body {
+  background-color: tan;
+  margin: 0; }
+
+.page {
+  background-color: tan;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+.top {
+  background-color: #015294;
+  color: white;
+  padding: 1rem; }
+
+.bottom {
+  background-color: pink;
+  flex: 1;
+  display: flex; }
+
+.left {
+  background-color: #343434;
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 1rem; }
+
+.right {
+  background-color: #242423;
+  flex: 3;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  padding-top: 1rem; }
+
+.addComponentContainer {
+  margin: 1rem;
+  cursor: pointer;
+  border: 2px transparent solid; }
+
+.addComponentContainer:hover {
+  border-color: #70bffb; }
+
+.addComponentContainer:active {
+  border-color: black; }
+
+.addComponentLabel {
+  color: #dfdfdf; }
+
+.addComponentPreview {
+  overflow: hidden; }
+
+.leftEditView {
+  color: #dfdfdf;
+  padding: 1rem; }
+
+.inputGroup {
+  margin-bottom: 1rem;
+  font-size: 1rem; }
+  .inputGroup .editInput {
+    margin-top: 5px; }
+
+.editCB {
+  display: inline-flex; }
+
+.editRadio {
+  display: inline-flex;
+  margin-right: .3rem; }
+
+.radioLabel {
+  margin-right: 1rem; }
+
+.editInput {
+  display: inline-block;
+  width: 100%;
+  background-color: #252525;
+  border: 1px #252525 solid;
+  border-radius: 4px;
+  color: #dfdfdf;
+  font-size: 18px;
+  padding: .3em;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300; }
+
+.editBtn {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  padding: .4em;
+  background-color: #015294;
+  border: none;
+  color: #dfdfdf;
+  border-radius: 4px;
+  transition: transform .2s ease-in-out; }
+  .editBtn:hover {
+    transform: scale(1.03); }
+  .editBtn:active {
+    color: #70bffb; }
+
+.editBtn--delete {
+  background-color: #7F2725; }
+  .editBtn--delete:active {
+    color: red; }
+
+.hideme {
+  display: none; }
+
+.avoid-clicks {
+  pointer-events: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; }
+
+.guy {
+  background-color: pink;
+  margin: 0; }
+
+.ui-icon--delete {
+  width: 2rem;
+  margin: .5rem; }
+
+.ghost {
+  opacity: 0.4; }
+
+.draggable * {
+  pointer-events: none; }
+
+.draggable:hover {
+  cursor: grab; }
+
+.draggable:active {
+  cursor: grabbing; }
+
+.draggableSelected {
+  outline: 2px #70bffb solid; }
+
+.dropzone {
+  height: 0;
+  background-color: lightblue;
+  transition: all .3s ease;
+  animation: alertPulse 1s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: #f7ed93;
+  /* you need this to specify a color to pulse to */
+  position: relative;
+  overflow: hidden;
+  margin-left: -5px;
+  margin-right: -5px; }
+
+.dropzone:after {
+  content: "dropzone";
+  font-size: 11px;
+  position: absolute;
+  left: 40%;
+  z-index: -1; }
+
+.dropzone--delete {
+  height: auto; }
+
+.dropzoneHover {
+  background-color: blue; }
+
+.goLarge {
+  height: 15px; }
+
+.scaleLarge {
+  transform: scale(1.3); }
+
+.ddHovered {
+  background-color: purple;
+  border: 2px white dashed; }
+
+.ddItemBeingDragged {
+  opacity: .35; }
+
+.alertPulse-css {
+  animation: alertPulse 1s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  background: #f7ed93;
+  /* you need this to specify a color to pulse to */ }
+
+@-webkit-keyframes alertPulse {
+  0% {
+    background-color: #f7ed93;
+    opacity: 1; }
+  50% {
+    opacity: yellow;
+    opacity: 0.75; }
+  100% {
+    opacity: #f7ed93;
+    opacity: 1; } }

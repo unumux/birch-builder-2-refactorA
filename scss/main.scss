@@ -1,0 +1,418 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+$uiWhiteOff: #dfdfdf;
+
+$uiGreyDark: #242423;
+$uiGreyMedium: #343434;
+$uiGreyLight: #dfdfdf;
+
+$uiBlueDark: #015294;
+$uiBlueLight: #70bffb;
+
+$uiRedDark: #7F2725;
+$uiRedLight: #8D3432;
+
+// project colors
+$color-unum-grey: #343434;
+$color-unum-dark-grey: #242423;
+$color-unum-light-grey: #4e4e4e;
+$color-off-white: #dfdfdf;
+$selectColor: #70bffb; 
+$code-editor-handlebar: #444444;
+
+// neutral
+$neutral-dark-grey: #2E2E2E;
+$neutral-light-grey-3: #E9E9E9;
+$neutral-light-grey-4: #F7F7F7;
+
+// unum styles
+$unum-blue: #015294;  
+$unum-gold: #FAC832;
+$unum-sand: #CCBD8F;
+$unum-sand-dark: #BEA97D;
+$unum-dark-grey: #2E2E2E;
+$unum-orange: #E89528;
+// new unum colors:
+$unum-slate: #5A7184;
+$unum-pool: #47B4BC;
+$unum-lawn: #8CC442;
+
+// colonial styles
+$colonial-steel-blue: #19557F;
+$colonial-steel-blue-light: #ADC5D5;
+$colonial-mint: #1A8573;
+$colonial-tangerine: #F1C44F;
+$colonial-sand: #E0DDCE;
+$colonial-slate: #5B7183;
+$colonial-dark-grey: #2E2E2E;
+// new colonial colors:
+$colonial-leaf: #78B25D;
+$colonial-ocean: #3BAECC;
+$colonial-asparagus: #A4CC44;
+$colonial-pumpkin: #F38130;
+$colonial-dark-red: #7F2725;
+$colonial-moss: #537650;
+$colonial-grape: #5F3A6C;
+
+
+
+// color picker styles BEGIN
+.bg-unum-blue{background-color: $unum-blue;}
+.bg-unum-slate{background-color: $unum-slate;}
+.bg-unum-pool{background-color: $unum-pool;}
+.bg-unum-gold{background-color: $unum-gold;}
+.bg-unum-lawn{background-color: $unum-lawn;}
+// .bg-unum-sand{background-color:$unum-sand;}
+// .bg-unum-sand-dark{background-color: $unum-sand-dark;}
+// .bg-unum-dark-grey{background-color: $unum-dark-grey;}
+
+.bg-white{ background-color: white;}
+.bg-black{ background-color: black;}
+.bg-light-grey-light-4{background-color: #f7f7f7;}
+
+.bg-neutral-dark-grey{background-color: $neutral-dark-grey;}
+.bg-neutral-light-grey-3{background-color: $neutral-light-grey-3;}
+.bg-neutral-light-grey-4{background-color: $neutral-light-grey-4;}
+
+
+.bg-colonial-steel-blue{background-color: $colonial-steel-blue;}
+.bg-colonial-slate{background-color: $colonial-slate;}
+.bg-colonial-mint{background-color: $colonial-mint;}
+.bg-colonial-leaf{background-color: $colonial-leaf;}
+.bg-colonial-ocean{background-color: $colonial-ocean;}
+.bg-colonial-asparagus{background-color: $colonial-asparagus;}
+.bg-colonial-tangerine{background-color: $colonial-tangerine;}
+.bg-colonial-pumpkin{background-color: $colonial-pumpkin;}
+.bg-colonial-dark-red{background-color: $colonial-dark-red;}
+.bg-colonial-sand{background-color: $colonial-sand;}
+.bg-colonial-moss{background-color: $colonial-moss;}
+.bg-colonial-grape{background-color: $colonial-grape;}
+// .bg-colonial-steel-blue-light{background-color: $colonial-steel-blue-light;}
+// .bg-colonial-dark-grey{background-color: $colonial-dark-grey;}
+
+// new colors
+
+
+.myColorPicker {
+    padding-left: 5px;
+}
+.myColorPickerColorRow{
+    display: flex;
+    justify-content: center;
+}
+.myColorPickerColorRow--middle{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.myColorPicker button{
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    border: 1px solid;
+    cursor: pointer;
+    margin-right: 3px;
+    transition: all .2s ease-in-out;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+.cpTooltip{
+    border: 0;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;// new
+    border-radius: 3px;
+    margin-left: -30px;
+    border: 1px solid $unum-dark-grey;  // instead of black because the input bg is dark
+    margin-top: 5px;
+}
+.tooltipster-sidetip .tooltipster-box {
+    background: white;
+}
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+    border-top-color: white;
+}
+.colorboxFlex{
+    display: flex;
+    align-items: center;
+    //margin-top: 5px;
+}
+// color picker styles END
+
+
+body{
+    background-color: tan;
+    margin: 0;
+}
+.page{
+    background-color: tan;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    background-color: $uiBlueDark;
+    color: white;
+    padding: 1rem;
+}
+.bottom{
+    background-color: pink;
+    flex: 1;
+    display: flex;
+}
+.left{
+    background-color: $uiGreyMedium;
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 1rem;
+}
+.right{
+    background-color: $uiGreyDark;
+    flex: 3;
+    overflow-y: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding-top: 1rem;
+}
+
+
+
+// left area
+.addComponentContainer{
+    margin: 1rem;
+    cursor: pointer;
+    border: 2px transparent solid;
+}
+.addComponentContainer:hover{
+    border-color: $uiBlueLight;
+}
+.addComponentContainer:active{
+    border-color: black;
+}
+.addComponentLabel{
+    color: $uiGreyLight;
+}
+.addComponentPreview{
+    overflow: hidden;
+}
+// edit view in left
+.leftEditView{
+    color: $uiGreyLight;
+    padding: 1rem;
+}
+
+
+
+// form input
+.inputGroup{
+    margin-bottom: 1rem;
+    font-size: 1rem;
+
+    & .editInput{
+        margin-top: 5px;
+    }
+
+    // & label > input{
+    //     margin-top: 5px;
+    // }
+    // & label > select{
+    //     margin-top: 5px;
+    // }
+    // & label > textarea{
+    //     margin-top: 5px;
+    // }
+}
+.editCB{
+    display: inline-flex; // strangely enough this seems to make for better bottom alignment with text next to it.
+}
+.editRadio{
+    display: inline-flex; // strangely enough this seems to make for better bottom alignment with text next to it.
+    margin-right: .3rem;
+}
+.radioLabel{
+    margin-right: 1rem;
+}
+.editInput{
+    display:inline-block; // changed from block for the colorbox insert
+    width: 100%;
+    background-color: #252525; //black
+    border: 1px #252525 solid; //black
+    border-radius: 4px;
+    color: $uiWhiteOff;
+    font-size: 18px;
+    padding: .3em;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 300;
+}
+.editBtn{
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    padding: .4em;
+    background-color: $uiBlueDark;
+    border: none;
+    color: $uiWhiteOff;
+    border-radius: 4px;
+    transition: transform .2s ease-in-out;
+    &:hover{
+        transform: scale(1.03);
+    }
+    &:active{
+        color: $uiBlueLight;
+    }
+}
+.editBtn--delete{
+    background-color: $uiRedDark;
+    &:active{
+        color: red;
+    }
+}
+
+
+
+// right
+// .isBeingEdited{
+//     outline: 2px $uiBlueLight solid;
+// }
+
+// .deleteArea{
+//     display: flex;
+//     align-items: center;
+
+//     position: sticky;
+//     top: 50%;
+//     width: 70px;
+//     margin-left: 50px;
+// }
+
+
+
+// util
+.hideme{
+    display: none;
+}
+// https://css-tricks.com/almanac/properties/p/pointer-events/
+.avoid-clicks {
+    pointer-events: none;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+// /util
+
+.guy{
+    background-color: pink;
+    margin: 0;
+}
+
+// icons
+.ui-icon--delete{
+    width: 2rem;
+    margin: .5rem;
+}
+
+
+
+
+
+
+// drag and drop styles
+
+
+.ghost {
+    opacity: 0.4;
+}
+
+
+
+
+.draggable *{
+    //border: 1px transparent solid;
+    //margin-bottom: -2px;
+    pointer-events: none;
+}
+.draggable:hover{
+    cursor: grab;
+    // outline: 1px dashed white;
+    // outline-offset: -1px;
+}
+.draggable:active{
+    cursor: grabbing;
+}
+.draggableSelected{
+    outline: 2px $uiBlueLight solid;
+}
+
+.dropzone{
+    height: 0;
+    background-color: lightblue;
+    transition: all .3s ease;
+
+    // animation: glow 800ms ease-out infinite alternate;
+	// background: #222922;
+	// background: linear-gradient(#333933, #222922);
+	// border-color: #393;
+	// box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	// color: #efe;
+    // outline: none;
+    //border: 2px transparent solid;
+    animation: alertPulse 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 1;
+    background: #f7ed93; /* you need this to specify a color to pulse to */
+
+    position: relative;
+    overflow: hidden;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.dropzone:after {
+    content: "dropzone";
+    font-size: 11px;
+    position: absolute;
+    left: 40%;
+    z-index: -1;
+}
+.dropzone--delete{
+    height: auto;
+}
+.dropzoneHover{
+    background-color: blue;
+}
+.goLarge{
+    height: 15px;
+}
+.scaleLarge{
+    transform: scale(1.3);
+}
+.ddHovered{
+    background-color: purple;
+    border: 2px white dashed;
+}
+.ddItemBeingDragged{
+    opacity: .35;
+}
+
+.alertPulse-css {
+    animation: alertPulse 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 1;
+    background: #f7ed93; /* you need this to specify a color to pulse to */
+}
+@-webkit-keyframes alertPulse {
+    0% {background-color: #f7ed93; opacity: 1;}
+    50% {opacity: yellow; opacity: 0.75; }
+    100% {opacity: #f7ed93; opacity: 1;}
+}
+
