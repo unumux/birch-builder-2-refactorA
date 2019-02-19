@@ -52,6 +52,11 @@ function saveMe(target){
         //eval(`handlers.goSavet${target}()`)
     }
 }
+function blankTo0(guy){ // used for number only input fields
+    if (guy.value === ''){
+        guy.value = 0;
+    }
+}
 
 
 

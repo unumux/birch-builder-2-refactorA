@@ -121,8 +121,12 @@ function userEmptyRightClicked() {
 function userPrivateLoadDataIntoFields(){
     // let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
-    // ourDataObj = dataMatch.compCode.saveObj
+    console.log('dataMatch:',dataMatch)
+
+
     ourDataObj = dataMatch.compData
+    console.log('ourDataObj:', ourDataObj);
+    
 
     // loop through it and if there is a matching input field...load the data
     const ourDataArray = Object.entries(ourDataObj)  // make array from object
@@ -140,15 +144,19 @@ function userPrivateLoadDataIntoFields(){
 function userEditSave(){
     //console.log('welcome to userEditSave()...');
     //let dataMatch = masterDataObj.activeCompArray[state.editCompId]
-    let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
+    let activeComp = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
     // let ourSaveObj = dataMatch.compCode.saveObj 
-    let ourSaveObj = dataMatch.compData 
+    let compData = activeComp.compData
+    //let ourSaveObj = dataMatch.compData 
 
-    const ourSaveArray = Object.entries(ourSaveObj)  // make array from object
-    for (const [fieldName, fieldData] of ourSaveArray) { // loop & destructure array entries into names
-        let ourSelector = document.querySelector(`#${dataMatch.template}_${fieldName}`)
+    const compDataArray = Object.entries(compData)  // make array from object
+    for (const [fieldName, fieldData] of compDataArray) { // loop & destructure array entries into names
+        let ourSelector = document.querySelector(`#${activeComp.template}_${fieldName}`)
+        console.log('wanting to save to: ', `#${activeComp.template}_${fieldName}`);
+        
         if (ourSelector){
             // utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compCode.saveObj[fieldName] = ourSelector.value
+            console.log(utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compData[fieldName])
             utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compData[fieldName] = ourSelector.value
         }
     }

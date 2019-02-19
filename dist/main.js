@@ -64,38 +64,32 @@ function mainPopulateLeft(){
 
 function mainMergeDataIntoPlaceholders2(compGuid){
     //console.log('######################');
-    console.log('welome to mainMergeDataIntoPlaceholders2()...');
-    console.log('compGuid:',compGuid);
+    //console.log('welome to mainMergeDataIntoPlaceholders2()...');
+    //console.log('compGuid:',compGuid);
     let activeComp = utilGetArrayItemByGuid(masterDataObj.activeCompArray, compGuid)
-    console.log('activeComp:', activeComp)
+    //console.log('activeComp:', activeComp)
     let compCode = activeComp.compCode
-    console.log('compCode:', compCode)
+    //console.log('compCode:', compCode)
+    let compData = activeComp.compData
+    //console.log('compData:', compData)
+
+    let mergedCode = compCode
     
-    // build compData...
     
-
-
-
-
-
-    //console.log('dataObj:',dataObj);
-    //console.log('');
-
-    // let originalTemplateCode = templateCode // do I need this?
-    
-    /*
     // loop through the dataObj looking for dynamic code placeholders
-    const dataObjEntries = Object.entries(dataObj)
-    for (const [fieldLabel, fieldData] of dataObjEntries) { // destructured to give names to the data fields
+    const compDataEntries = Object.entries(compData)
+    for (const [fieldLabel, fieldData] of compDataEntries) { // destructured to give names to the data fields
         //console.log('fieldLabel:',fieldLabel);
         //console.log('fieldData:',fieldData);
 
         // generic match merge.  If the placeholder name matches a field name
-        templateCode = myReplace(templateCode, `birch_${fieldLabel}_birch`, fieldData)
+        mergedCode = myReplace(mergedCode, `birch_${fieldLabel}_birch`, fieldData)
+        //console.log('mergedCode:',mergedCode)
     }
     
-    return templateCode
-    */
+    
+    return mergedCode
+    
     
 }
 
@@ -109,7 +103,7 @@ function mainMergeDataIntoPlaceholders(templateCode, dataObj){
     //console.log('');
 
     // let originalTemplateCode = templateCode // do I need this?
-    
+    let mergedCode = templateCode
 
     // loop through the dataObj looking for dynamic code placeholders
     const dataObjEntries = Object.entries(dataObj)
@@ -123,15 +117,13 @@ function mainMergeDataIntoPlaceholders(templateCode, dataObj){
         // }
 
         // generic match merge.  If the placeholder name matches a field name
-        //if (fieldLabel == 'testText'){
-            templateCode = myReplace(templateCode, `birch_${fieldLabel}_birch`, fieldData)
-        //}
-
+        mergedCode = myReplace(templateCode, `birch_${fieldLabel}_birch`, fieldData)
+        console.log('mergedCode:', mergedCode)
     }
     
     // return templateCode with dataObj info merged into any matching placeholders
     //console.log('the merged code is', templateCode);
-    return templateCode
+    return mergedCode
     
 }
 

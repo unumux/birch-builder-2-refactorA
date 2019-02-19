@@ -4,17 +4,23 @@ let masterDataObj = {
     addCompToActiveCompArrayByTemplateId: function(templateId){
         //console.log('[masterDataObj.js] welcome to addCompToActiveCompArray...')
 
-        let dataObj = {}
+        // combine the dataObj with the themeObj
+        let dataObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].dataObj))
+        let themeObj = {}
+        let comboObj = {}
         if (state.theme == 'unum'){
-            dataObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].unumObj))
+            themeObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].unumObj))
         }
         else if (state.theme == 'colonial'){
-            dataObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].colonialObj))
+            themeObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].colonialObj))
         }
-        else{
-            dataObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].unumObj))
-        }
-        console.log('dataObj:', dataObj)
+        //console.log('dataObj:', dataObj)
+        //console.log('themeObj:', themeObj)
+
+        Object.assign(comboObj, dataObj, themeObj); // with this order duplicate fields in themeObj override those in dataObj
+        //console.log('comboObj:', comboObj)
+
+        //const object2 = Object.assign({c: 4, d: 5}, object1);
 
         // create and object to insert into the activeCompArray
         let newCompObj = {
@@ -25,7 +31,7 @@ let masterDataObj = {
             //compCode: megaComponentObject[templateId] // get matching template object from the generated megaComponentObject...
             compCode: JSON.parse(JSON.stringify(megaComponentObject[templateId].code)), // get matching template object from the generated megaComponentObject...
             // the above is used to avoid making all new object referring to the same.  Objects need to be cloned or they all point to the orig obj.
-            compData: dataObj
+            compData: comboObj
         }
 
         this.activeCompArray.push(newCompObj)
