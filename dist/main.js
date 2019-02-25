@@ -4,7 +4,17 @@ console.log('megaComponentObject is loaded as a global variable from the generat
 // initialize drop and drop
 let dnd_el = document.getElementById('draggableContainer');
 let sortable = Sortable.create(dnd_el, {
-  ghostClass: "ghost"
+  ghostClass: "ghost",
+  // Element dragging ended
+	onEnd: function (/**Event*/evt) {
+		// var itemEl = evt.item;  // dragged HTMLElement
+		// evt.to;    // target list
+		// evt.from;  // previous list
+		// evt.oldIndex;  // element's old index within old parent
+        // evt.newIndex;  // element's new index within new parent
+        console.log('drag ended!')
+        mainSaveNewOrderAfterDrop()
+	},
 });
 
 let state = {
@@ -22,7 +32,7 @@ function mainPopulateLeft(){
     const megaComponentArray = Object.entries(megaComponentObject)  // make array from object
     for (const [compId, compObj] of megaComponentArray) { // destructure array entries into names
         //console.log(`The compId is ${compId}`);
-        //console.log(`The compObj is ${compObj}`);
+        //console.log(`The compObj is`, compObj);
 
         let targetRenderElement = document.querySelector('#leftContainersInsertionPoint')
 
@@ -49,9 +59,9 @@ function mainPopulateLeft(){
         // create child inside that last child
         let createdEl4 = document.createElement("div")
         // merge the template code with the comp data first...
-        //let mergedCode = mainMergeDataIntoPlaceholders(templateBaseCode, templateDataObj)
-        //let mergedCode = mainMergeDataIntoPlaceholders(compObj.code, compObj.unumObj)
-        let mergedCode = mainMergeDataIntoPlaceholders(compObj.code, compObj.unumObj)
+        let themeModifiedDataObj = mainMergeDataWithTheme(compObj)
+        let mergedCode = mainMergeDataIntoPlaceholders(themeModifiedDataObj) // this might miss the theme
+
         //compObj.code = mergedCode
         createdEl4.innerHTML = mergedCode
         // createdEl4.innerHTML = `${compObj.code}`
@@ -60,21 +70,15 @@ function mainPopulateLeft(){
     }
 }
 
-
-
-function mainMergeDataIntoPlaceholders2(compGuid){
+function mainMergeDataIntoPlaceholders(themeModifiedDataObj){
     //console.log('######################');
     //console.log('welome to mainMergeDataIntoPlaceholders2()...');
-    //console.log('compGuid:',compGuid);
-    let activeComp = utilGetArrayItemByGuid(masterDataObj.activeCompArray, compGuid)
-    //console.log('activeComp:', activeComp)
-    let compCode = activeComp.compCode
-    //console.log('compCode:', compCode)
-    let compData = activeComp.compData
-    //console.log('compData:', compData)
+    //console.log('code:',code);
+    //console.log('themeModifiedDataObj:',themeModifiedDataObj);
 
+    let compCode = themeModifiedDataObj.code
+    let compData = themeModifiedDataObj.dataObj
     let mergedCode = compCode
-    
     
     // loop through the dataObj looking for dynamic code placeholders
     const compDataEntries = Object.entries(compData)
@@ -83,49 +87,15 @@ function mainMergeDataIntoPlaceholders2(compGuid){
         //console.log('fieldData:',fieldData);
 
         // generic match merge.  If the placeholder name matches a field name
-        mergedCode = myReplace(mergedCode, `birch_${fieldLabel}_birch`, fieldData)
+        mergedCode = myReplaceAll(mergedCode, `birch_${fieldLabel}_birch`, fieldData)
         //console.log('mergedCode:',mergedCode)
     }
-    
-    
-    return mergedCode
-    
-    
-}
-
-
-
-function mainMergeDataIntoPlaceholders(templateCode, dataObj){
-    //console.log('######################');
-    //console.log('welome to mainMergeDataIntoPlaceholders()...');
-    //console.log('templateCode:',templateCode);
-    //console.log('dataObj:',dataObj);
-    //console.log('');
-
-    // let originalTemplateCode = templateCode // do I need this?
-    let mergedCode = templateCode
-
-    // loop through the dataObj looking for dynamic code placeholders
-    const dataObjEntries = Object.entries(dataObj)
-    for (const [fieldLabel, fieldData] of dataObjEntries) { // destructured to give names to the data fields
-        //console.log('fieldLabel:',fieldLabel);
-        //console.log('fieldData:',fieldData);
-        
-        // baseCodeWithDynamicCodeInserted = baseCodeWithDynamicCodeInserted.replace(`birch_bottomAddress_birch`, dataObj.bottomAddress)
-        // if (fieldLabel == 'testText'){
-        //     templateCode = myReplace(templateCode, 'birch_testText_birch', fieldData)
-        // }
-
-        // generic match merge.  If the placeholder name matches a field name
-        mergedCode = myReplace(templateCode, `birch_${fieldLabel}_birch`, fieldData)
-        console.log('mergedCode:', mergedCode)
-    }
-    
-    // return templateCode with dataObj info merged into any matching placeholders
-    //console.log('the merged code is', templateCode);
     return mergedCode
     
 }
+
+
+
 
 
 function myReplace(mainString, substringToReplace, newSubString){
@@ -137,58 +107,30 @@ function myReplaceAll(targetString, replaceThis, withThat){
 }
 
 
-function mainEditSave_template1(){
-    console.log('||||||||||||welcome to mainEditSave_template1()...');
-    let template1_textText = document.querySelector('#template1_textText').value
-    //console.log('template1_textText:',template1_textText);
+function mainSaveNewOrderAfterDrop(){
+    //console.log('welcome to mainSaveNewOrderAfterDrop()...');
+    let tempArray = [];
 
-    let dataGuid = document.querySelector('#guidBeingEdited').value
-    //console.log('dataGuid:',dataGuid)
-    
-    //console.log('masterDataObj.activeCompArray[dataGuid]:', masterDataObj.activeCompArray[dataGuid])
-    let dataMatch = masterDataObj.activeCompArray[dataGuid]
+    let allDraggable = utilNodeListToArray(document.querySelectorAll('.draggable'))
+    allDraggable.map( (item,i) => {
+        tempArray[i] = utilGetArrayItemByGuid(masterDataObj.activeCompArray, item.dataset.guid)
+    })
 
+    // now loop to update the master with the temp
+    masterDataObj.activeCompArray.map( (item,i) => {
+        masterDataObj.activeCompArray[i] = tempArray[i]
+    })
 
-    // get the matching data guy
-    //console.log('state.editActiveComp:',state.editActiveComp)
-    //let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, dataGuid)
-    //console.log('++++++ dataMatch:', dataMatch)
-    // update it's data from the user input fields
-    dataMatch.compCode.unumObj.testText = document.querySelector('#template1_textText').value
-
-
-    // that should be it!  No need to merge here.  The merge should happen during master updateView!!
-
-
-    // merge it's code with the updated data
-    // console.log('megaComponentObject[state.editActiveComp.template]', megaComponentObject[state.editActiveComp.template])
-    // mainMergeDataIntoPlaceholders(templateCode, dataObj)
-    // let mergedCode = mainMergeDataIntoPlaceholders(megaComponentObject[item.template].code, item.compCode.unumObj)
-    // let mergedCode = mainMergeDataIntoPlaceholders(megaComponentObject[dataMatch.template].code, dataMatch.compCode.unumObj)
-    // let mergedCode = mainMergeDataIntoPlaceholders(megaComponentObject[state.editActiveComp.template].code, state.editActiveComp.compCode.unumObj)
-    
-    //console.log('mergedCode:', mergedCode);
     masterDataObj.updateView()
-    
-    
-    // update the master updateView
-
-    //let mergedCode = mainMergeDataIntoPlaceholders(compObj.code, compObj.unumObj)
-    //compObj.code = mergedCode
 }
 
-function mainEditSave_template2(){
-    console.log('welcome to mainEditSave_template2()...');
-    let template2_textText = document.querySelector('#template2_textText').value
-    //console.log('template2_textText:',template1_textText);
-
-    // get the matching data guy
-    //console.log('state.editActiveComp:',state.editActiveComp)
-    // update it's data from the user input fields
-    state.editActiveComp.compCode.unumObj.testText = document.querySelector('#template2_textText').value
-    // merge it's code with the updated data
-    // update the master updateView
-
-    //let mergedCode = mainMergeDataIntoPlaceholders(compObj.code, compObj.unumObj)
-    //compObj.code = mergedCode
+function mainMergeDataWithTheme(theObj){
+    //console.log('welcome to mergeDataWithTheme()...');
+    if (state.theme == 'unum'){
+        theObj.dataObj = Object.assign(theObj.dataObj, theObj.unumObj);
+    }
+    else if (state.theme == 'colonial'){
+        theObj.dataObj = Object.assign(theObj.dataObj, theObj.colonialObj);
+    }
+    return theObj
 }

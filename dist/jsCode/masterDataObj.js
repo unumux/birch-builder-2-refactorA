@@ -4,52 +4,35 @@ let masterDataObj = {
     addCompToActiveCompArrayByTemplateId: function(templateId){
         //console.log('[masterDataObj.js] welcome to addCompToActiveCompArray...')
 
-        // combine the dataObj with the themeObj
-        let dataObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].dataObj))
-        let themeObj = {}
-        let comboObj = {}
-        if (state.theme == 'unum'){
-            themeObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].unumObj))
-        }
-        else if (state.theme == 'colonial'){
-            themeObj = JSON.parse(JSON.stringify(megaComponentObject[templateId].colonialObj))
-        }
-        //console.log('dataObj:', dataObj)
-        //console.log('themeObj:', themeObj)
-
-        Object.assign(comboObj, dataObj, themeObj); // with this order duplicate fields in themeObj override those in dataObj
-        //console.log('comboObj:', comboObj)
-
-        //const object2 = Object.assign({c: 4, d: 5}, object1);
-
         // create and object to insert into the activeCompArray
         let newCompObj = {
             guid: this.guid, 
             template: templateId,
-            order: 0,
-            // isBeingEdited: false,
-            //compCode: megaComponentObject[templateId] // get matching template object from the generated megaComponentObject...
-            compCode: JSON.parse(JSON.stringify(megaComponentObject[templateId].code)), // get matching template object from the generated megaComponentObject...
-            // the above is used to avoid making all new object referring to the same.  Objects need to be cloned or they all point to the orig obj.
-            compData: comboObj
+            order: 0, // needed?
+            // JSON.parse(JSON.stringify is used to avoid making all new object referring to the same.  Objects need to be cloned or they all point to the orig obj.
+            code: JSON.parse(JSON.stringify(megaComponentObject[templateId].code)), // get matching template object from the generated megaComponentObject...
+            dataObj: JSON.parse(JSON.stringify(megaComponentObject[templateId].dataObj)),
+            unumObj: JSON.parse(JSON.stringify(megaComponentObject[templateId].unumObj)),
+            colonialObj: JSON.parse(JSON.stringify(megaComponentObject[templateId].colonialObj))
         }
+
+        newCompObj = mainMergeDataWithTheme(newCompObj)
+        //newCompObj.dataObj = themeMerge2(newCompObj.dataObj, newCompObj.unumObj, newCompObj.colonialObj)
 
         this.activeCompArray.push(newCompObj)
         this.guid++
-        
+        //this = themeMerge(this)
+        //this.dataObj = themeMerge2(this.dataObj, this.unumObj, this.colonialObj)
         this.updateView()
     },
-    deleteComp: function(index){
+    deleteComp: function(receivedGuid){
         //console.log('welcome to the deleteComp method...')
-        //console.log('index = ', index)
-        // for (let i=0; i<this.activeCompArray.length; i++){
-        //     if (this.activeCompArray[i].order*1 == orderNumber*1){
-        //         return this.activeCompArray[i].guid
-        //     }
-        // }
-        this.activeCompArray.splice(index,1)
+        for (let i=0; i<this.activeCompArray.length; i++){
+            if (this.activeCompArray[i].guid == receivedGuid){
+                this.activeCompArray.splice(i,1)
+            }
+        }
         this.updateView()
-        //privateUserSwitchToComponentView()
     },
     updateView: function(){
         // remove existing dragdrop event listeners...
@@ -66,15 +49,10 @@ let masterDataObj = {
 
         // <div id="draggable0" class="draggable" draggable="true">dragme0</div>
         this.activeCompArray.map( (item, i) => {
+            //console.log('item:', item)
             //item.order = i
             //console.log('[updateView] item.isBeingEdited:', item.isBeingEdited)
-            // let mergedCode = mainMergeDataIntoPlaceholders(item.compCode.code, item.compCode.unumObj)
-            //let mergedCode = mainMergeDataIntoPlaceholders(megaComponentObject[item.template].code, item.compCode.saveObj)
-            //let mergedCode = mainMergeDataIntoPlaceholders(megaComponentObject[item.template].code, item.compData)
-            let mergedCode = mainMergeDataIntoPlaceholders2(item.guid)
-            
-            
-            //console.log('mergedCode:', mergedCode);
+            let mergedCode = mainMergeDataIntoPlaceholders(item)
             
     
             //draggableItem += `<div id="draggable${i}" class="draggable" draggable="true">${mergedCode}</div>`

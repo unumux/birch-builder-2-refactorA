@@ -4,6 +4,10 @@ let template1 = {
         <p style="margin-top:0;">This is template1.  The <a href="#">best</a></p>
         <p style="margin-bottom:0;">birch_testText_birch</p>
         </div>`,
+        dataObj: {
+            backgroundColor: 'red',
+            testText: `aaa(default)`
+        },
         unumObj: {
             backgroundColor: 'lightblue',
             testText: `aaa(unum)`

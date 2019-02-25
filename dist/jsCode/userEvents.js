@@ -119,13 +119,15 @@ function userEmptyRightClicked() {
     tempUpdateStateVariableDisplay()
 }
 function userPrivateLoadDataIntoFields(){
+    //console.log('welcome to userPrivateLoadDataIntoFields()...');
+    
     // let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
-    console.log('dataMatch:',dataMatch)
+    //console.log('dataMatch:',dataMatch)
 
 
-    ourDataObj = dataMatch.compData
-    console.log('ourDataObj:', ourDataObj);
+    ourDataObj = dataMatch.dataObj
+    //console.log('ourDataObj:', ourDataObj);
     
 
     // loop through it and if there is a matching input field...load the data
@@ -146,20 +148,25 @@ function userEditSave(){
     //let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let activeComp = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
     // let ourSaveObj = dataMatch.compCode.saveObj 
-    let compData = activeComp.compData
+    let compData = activeComp.dataObj
     //let ourSaveObj = dataMatch.compData 
 
     const compDataArray = Object.entries(compData)  // make array from object
     for (const [fieldName, fieldData] of compDataArray) { // loop & destructure array entries into names
         let ourSelector = document.querySelector(`#${activeComp.template}_${fieldName}`)
-        console.log('wanting to save to: ', `#${activeComp.template}_${fieldName}`);
+        //console.log('___');
+        //console.log('wanting to save from: ', `#${activeComp.template}_${fieldName}`);
         
         if (ourSelector){
-            // utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compCode.saveObj[fieldName] = ourSelector.value
-            console.log(utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compData[fieldName])
-            utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId).compData[fieldName] = ourSelector.value
+            //console.log('ourSelector is valid...');
+            //let blah = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
+            activeComp.dataObj[fieldName] = ourSelector.value
+
         }
     }
+    //console.log('all saves done.  let us check the data before updating the view...');
+    //console.log(masterDataObj.activeCompArray);
+    
     masterDataObj.updateView()
 }
 function userEditDelete(){
@@ -171,181 +178,31 @@ function userEditDelete(){
     }
 }
 
+function userPickColor(el){
+    let selectedColor = el.value
+    let targetInputEl = document.querySelector('#'+state.colorPickerInputId)
+    targetInputEl.value = selectedColor
+    // document.querySelector('#'+state.colorPickerInputId).value = selectedColor
+    document.querySelector('#'+state.colorPickerId).style.backgroundColor = selectedColor
+    document.querySelector('body').click() // closes the tooltip popup
 
-
-
-
-
-
-
-
-
-
-/*
-function userEmailCompClick(el){ // this function is added to the DOM's click event dynamically in masterDataObj during updateView()
-    event.stopPropagation() // to keep a click here from bubbling to the empty right area and triggering userEmptyRightClicked()
-    console.log('welcome to userEmailCompClick()...');
-    // console.log('el=',el);
-    // console.log(`the template for this emailComp is ${masterDataObj.activeCompArray[el.dataset.guid].template}`)
-    // console.log(masterDataObj.activeCompArray[el.dataset.guid]);
-
-    let dataGuidOfClickedEmailComp = el.dataset.guid
-    //console.log('dataGuidOfClickedEmailComp:',dataGuidOfClickedEmailComp);
-    let templateOfClickedEmailComp = masterDataObj.activeCompArray[dataGuidOfClickedEmailComp].template
-    //console.log('templateOfClickedEmailComp:',templateOfClickedEmailComp);
-
-
-    
-
-    let clickedTemplateId = masterDataObj.activeCompArray[el.dataset.order].template
-    let isEditViewActive = !document.querySelector('#leftEditView').classList.contains('hideme')
-    
-    if (!isEditViewActive){
-        // show edit view
-        document.querySelector('#leftComponentView').classList.add('hideme')
-        document.querySelector('#leftEditView').classList.remove('hideme')
-        // show editSection for clicked comp
-        document.querySelector(`#edit_${clickedTemplateId}`).classList.remove('hideme')
-        // state.editActiveComp = masterDataObj.activeCompArray[el.dataset.order]
-        //console.log('>>> el.dataset.guid:',el.dataset.guid);
-        document.querySelector('#guidBeingEdited').value = el.dataset.guid
-        masterDataObj.activeCompArray[el.dataset.guid].isBeingEdited = true
-        el.classList.add('isBeingEdited')
-        userloadDataIntoInputFields(dataGuidOfClickedEmailComp, templateOfClickedEmailComp)
+    // this is to auto-save without needing to click the save button
+    if (targetInputEl.dataset.savetarget){ // not null, undefined, etc.
+        userAutoSaveMe(targetInputEl.dataset.savetarget)
     }
-    else{
-        // switch to component view OR switch to a different component in edit view
-        // if isEditViewActive then there must be an active editSection
-
-        // find the open editSection...
-        let activeEditSectionId = null
-        let allEditSections = utilNodeListToArray(document.querySelectorAll('.editSection'))
-        allEditSections.map( (item, i) => {
-            if (!item.classList.contains('hideme')){
-                activeEditSectionId = item.id
-            }
-        })
-
-        // switch to another editSection or close the entire edit view...
-
-        if (document.querySelector('#guidBeingEdited').value == el.dataset.guid){
-            // same comp clicked again, so close the entire edit view...then switch to component view
-            privateUserSwitchToComponentView()
-            
-        }
-        else{
-            // switch to a different editSection
-            masterDataObj.activeCompArray.map( item => item.isBeingEdited = false ) // set all to false
-            // remove isBeingEdited css class 
-            let allDraggable = utilNodeListToArray(document.querySelectorAll('.draggable'))
-            allDraggable.map( (item, i) => {
-                item.classList.remove('isBeingEdited')
-            })
-
-            document.querySelector(`#${activeEditSectionId}`).classList.add('hideme')
-            document.querySelector(`#edit_${clickedTemplateId}`).classList.remove('hideme')
-            document.querySelector('#guidBeingEdited').value = el.dataset.guid
-            masterDataObj.activeCompArray[el.dataset.guid].isBeingEdited = true
-            el.classList.add('isBeingEdited')
-            userloadDataIntoInputFields(dataGuidOfClickedEmailComp, templateOfClickedEmailComp)
-        }
-        
+}
+function userAutoSaveMe(target){
+    // target: 300dc  from a call like: userAutoSaveMe('300dc')
+    // build: handlers.goSavet300dc()
+    if (target){ // not undefined, null, etc...
+        // eval(`handlers.goSavet${target}()`)
+        // template1_applyBtn
+        document.querySelector(`#${target}_applyBtn`).click()
+        //eval(`handlers.goSavet${target}()`)
     }
-
 }
-
-// userloadDataIntoInputFields(dataGuidOfClickedEmailComp, templateOfClickedEmailComp)
-function userloadDataIntoInputFields(guid, template){
-    //console.log('welcome to userloadDataIntoInputFields()...')
-    let dataMatch = masterDataObj.activeCompArray[guid]
-    //console.log('dataMatch:',dataMatch);
-    
-    // let ourDataObj = null
-    // if (state.theme == 'unum'){
-    //     ourDataObj = dataMatch.compCode.unumObj
-    // }
-    ourDataObj = dataMatch.compCode.saveObj
-
-    //console.log('ourDataObj:',ourDataObj);
-
-    // loop through it and if there is a matching input field...load the data
-
-    
-
-    const ourDataArray = Object.entries(ourDataObj)  // make array from object
-    for (const [fieldName, fieldData] of ourDataArray) { // loop & destructure array entries into names
-        //console.log(`fieldName:${fieldName} fieldData:${fieldData}`);
-        // template1_textText
-        //console.log('uh:',`#${template}_${fieldName}`);
-        
-        let ourSelector = document.querySelector(`#${template}_${fieldName}`)
-        //console.log('ourSelector:',ourSelector);
-        
-        if (ourSelector){
-            ourSelector.value = fieldData
-        }
+function userBlankTo0(guy){ // used for number only input fields
+    if (guy.value === ''){
+        guy.value = 0;
     }
-    
 }
-
-function userEditSave(){
-    //console.log('welcome to userEditSave()...');
-    let guid = document.querySelector('#guidBeingEdited').value
-    //console.log('guid:',guid);
-
-    let dataMatch = masterDataObj.activeCompArray[guid]
-    //console.log('dataMatch:',dataMatch);
-    
-    let ourSaveObj = dataMatch.compCode.saveObj // this obj is messed up!! Or maybe not...
-    //console.log('ourSaveObj:',ourSaveObj)
-
-    
-
-    const ourSaveArray = Object.entries(ourSaveObj)  // make array from object
-    //console.log('ourSaveArray:',ourSaveArray)
-    for (const [fieldName, fieldData] of ourSaveArray) { // loop & destructure array entries into names
-        let ourSelector = document.querySelector(`#${dataMatch.template}_${fieldName}`)
-        //console.log('ourSelector:',ourSelector);
-
-        //console.log('ourSaveObj', ourSaveObj)
-        
-        if (ourSelector){
-            //console.log(`saving ${ourSelector.value} into ${fieldName}`);
-            //ourSaveObj[fieldName] = ourSelector.value
-            //console.log('>>>>', masterDataObj.activeCompArray[guid].compCode.saveObj[fieldName])
-            masterDataObj.activeCompArray[guid].compCode.saveObj[fieldName] = ourSelector.value
-        }
-    }
-    masterDataObj.updateView()
-}
-
-
-
-
-
-
-
-
-function privateUserSwitchToComponentView(){
-    // hide all of the child editSections before switching views...
-    let allEditSections = utilNodeListToArray(document.querySelectorAll('.editSection'))
-    allEditSections.map( (item, i) => {
-        item.classList.add('hideme')
-    })
-    document.querySelector('#leftEditView').classList.add('hideme')
-    document.querySelector('#leftComponentView').classList.remove('hideme')
-
-    // loop through data to make sure non-have their edit mode activated
-    masterDataObj.activeCompArray.map( item => item.isBeingEdited = false ) // set all to false
-
-    // remove isBeingEdited css class 
-    let allDraggable = utilNodeListToArray(document.querySelectorAll('.draggable'))
-    allDraggable.map( (item, i) => {
-        item.classList.remove('isBeingEdited')
-    })
-
-    //state.editActiveComp = null
-}
-
-
-*/
