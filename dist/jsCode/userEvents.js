@@ -119,7 +119,7 @@ function userEmptyRightClicked() {
     tempUpdateStateVariableDisplay()
 }
 function userPrivateLoadDataIntoFields(){
-    //console.log('welcome to userPrivateLoadDataIntoFields()...');
+    console.log('welcome to userPrivateLoadDataIntoFields()...');
     
     // let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
@@ -136,7 +136,7 @@ function userPrivateLoadDataIntoFields(){
         let ourSelector = document.querySelector(`#${state.editTemplateId}_${fieldName}`)
         if (ourSelector){
             ourSelector.value = fieldData
-            if (ourSelector.id.includes('_backgroundColor')){
+            if (ourSelector.id.includes('Color')){
                 // give the cpTooltip button in this field the matching background color
                 document.querySelector(`#${ourSelector.id}CP`).style.backgroundColor = fieldData
             }
