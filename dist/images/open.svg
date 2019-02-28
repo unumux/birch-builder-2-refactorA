@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/folder-open</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M19.8852102,8.26889453 L17.3704879,12.6337187 C16.9722614,13.3249618 16.2413733,13.7500128 15.4510088,13.75 L1.56336987,13.75 C0.920210151,13.75 0.519480984,13.0436055 0.843543484,12.4811055 L3.35826571,8.11628125 C3.75651405,7.42504322 4.48740829,6.99999626 5.2777796,7 L19.1654185,7 C19.8085782,7 20.2093074,7.70639453 19.8852102,8.26889453 Z M5.2777796,5.875 L16.6666685,5.875 L16.6666685,4.1875 C16.6666685,3.25550781 15.9204879,2.5 15.0000018,2.5 L9.44444626,2.5 L7.22222404,0.25 L1.66666848,0.25 C0.746182373,0.25 1.81765166e-06,1.00550781 1.81765166e-06,1.9375 L1.81765166e-06,11.7125547 L2.39850876,7.54942188 C2.99354348,6.51660156 4.0968421,5.875 5.2777796,5.875 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-1083.000000, -23.000000)">
+            <g id="Header">
+                <g id="Icons/folder-open" transform="translate(1083.000000, 23.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="folder-open" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

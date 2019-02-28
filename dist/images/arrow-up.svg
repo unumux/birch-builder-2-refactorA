@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-up</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M9.07191938,17.1971878 L8.25836005,16.4044191 C7.91387998,16.0687423 7.91387998,15.5259458 8.25836005,15.19384 L15.3788365,8.25175762 C15.7233165,7.91608079 16.2803481,7.91608079 16.6211635,8.25175762 L23.7416399,15.1902689 C24.08612,15.5259458 24.08612,16.0687423 23.7416399,16.4008481 L22.9280806,17.1936168 C22.5799359,17.5328646 22.0119102,17.5257226 21.6710948,17.1793327 L17.467705,12.8798125 L17.467705,23.1429528 C17.467705,23.6178998 17.0755841,24 16.5881814,24 L15.4154833,24 C14.9280806,24 14.5359597,23.6178998 14.5359597,23.1429528 L14.5359597,12.8798125 L10.3289052,17.1829037 C9.98808978,17.5328646 9.42006413,17.5400067 9.07191938,17.1971878 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-899.000000, -409.000000)">
+            <g id="component-ui" transform="translate(579.000000, 401.000000)">
+                <g id="icons/arrow-up-btn" transform="translate(312.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="arrow-up" fill="#024882" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

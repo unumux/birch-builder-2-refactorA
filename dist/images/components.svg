@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/components</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-37.000000, -73.000000)" fill="#FFFFFF">
+            <g id="Components-tab" transform="translate(0.000000, 59.000000)">
+                <g id="side-panel-bar" transform="translate(0.000000, 1.000000)">
+                    <path d="M38,13 L43,13 C43.5522847,13 44,13.4477153 44,14 L44,19 C44,19.5522847 43.5522847,20 43,20 L38,20 C37.4477153,20 37,19.5522847 37,19 L37,14 C37,13.4477153 37.4477153,13 38,13 Z M38,22 L43,22 C43.5522847,22 44,22.4477153 44,23 L44,28 C44,28.5522847 43.5522847,29 43,29 L38,29 C37.4477153,29 37,28.5522847 37,28 L37,23 C37,22.4477153 37.4477153,22 38,22 Z M47,13 L52,13 C52.5522847,13 53,13.4477153 53,14 L53,19 C53,19.5522847 52.5522847,20 52,20 L47,20 C46.4477153,20 46,19.5522847 46,19 L46,14 C46,13.4477153 46.4477153,13 47,13 Z M47,22 L52,22 C52.5522847,22 53,22.4477153 53,23 L53,28 C53,28.5522847 52.5522847,29 52,29 L47,29 C46.4477153,29 46,28.5522847 46,28 L46,23 C46,22.4477153 46.4477153,22 47,22 Z" id="icons/components"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

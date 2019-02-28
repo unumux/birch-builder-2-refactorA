@@ -119,7 +119,7 @@ function userEmptyRightClicked() {
     tempUpdateStateVariableDisplay()
 }
 function userPrivateLoadDataIntoFields(){
-    console.log('welcome to userPrivateLoadDataIntoFields()...');
+    //console.log('welcome to userPrivateLoadDataIntoFields()...');
     
     // let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let dataMatch = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
@@ -145,11 +145,8 @@ function userPrivateLoadDataIntoFields(){
 }
 function userEditSave(){
     //console.log('welcome to userEditSave()...');
-    //let dataMatch = masterDataObj.activeCompArray[state.editCompId]
     let activeComp = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
-    // let ourSaveObj = dataMatch.compCode.saveObj 
     let compData = activeComp.dataObj
-    //let ourSaveObj = dataMatch.compData 
 
     const compDataArray = Object.entries(compData)  // make array from object
     for (const [fieldName, fieldData] of compDataArray) { // loop & destructure array entries into names
@@ -159,14 +156,9 @@ function userEditSave(){
         
         if (ourSelector){
             //console.log('ourSelector is valid...');
-            //let blah = utilGetArrayItemByGuid(masterDataObj.activeCompArray, state.editCompId)
             activeComp.dataObj[fieldName] = ourSelector.value
-
         }
     }
-    //console.log('all saves done.  let us check the data before updating the view...');
-    //console.log(masterDataObj.activeCompArray);
-    
     masterDataObj.updateView()
 }
 function userEditDelete(){
@@ -196,13 +188,188 @@ function userAutoSaveMe(target){
     // build: handlers.goSavet300dc()
     if (target){ // not undefined, null, etc...
         // eval(`handlers.goSavet${target}()`)
+        // if (target == 'c100'){
+        //     userHandlePreset(target)
+        // }
         // template1_applyBtn
         document.querySelector(`#${target}_applyBtn`).click()
         //eval(`handlers.goSavet${target}()`)
     }
 }
+function userHandlePreset(target){
+    console.log('welcome to userHandlePreset()...');
+    console.log('target:',target);
+    if (target == 'c100'){
+        let presetValue = document.querySelector('#c100_presetDD').value
+        if (presetValue == 'unum_logo-white_bg-color'){
+            document.querySelector('#c100_backgroundColor').value = '#015294'
+            document.querySelector('#c100_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-white-pad-right.png?raw=true'
+            document.querySelector('#c100_logoAltText').value = "[Unum]"
+            document.querySelector('#c100_logoAltTextColor').value = "white"
+            document.querySelector('#c100_ctaTextColor').value = "white"
+        }
+        if (presetValue == 'colonial_logo-white_bg-color'){
+            document.querySelector('#c100_backgroundColor').value = '#19557F'
+            document.querySelector('#c100_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-white-10r.png?raw=true'
+            document.querySelector('#c100_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c100_logoAltTextColor').value = "white"
+            document.querySelector('#c100_ctaTextColor').value = "white"
+        }
+        if (presetValue == 'unum_logo-color_bg-white'){
+            document.querySelector('#c100_backgroundColor').value = 'white'
+            document.querySelector('#c100_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-pad-right.png?raw=true'
+            document.querySelector('#c100_logoAltText').value = "[Unum]"
+            document.querySelector('#c100_logoAltTextColor').value = "#015294"
+            document.querySelector('#c100_ctaTextColor').value = "#015294"
+        }
+        if (presetValue == 'colonial_logo-color_bg-white'){
+            document.querySelector('#c100_backgroundColor').value = 'white'
+            document.querySelector('#c100_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-10r.png?raw=true'
+            document.querySelector('#c100_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c100_logoAltTextColor').value = "#19557F"
+            document.querySelector('#c100_ctaTextColor').value = "#19557F"
+        }
+
+        document.querySelector('#c100_backgroundColor').value = document.querySelector('#c100_backgroundColor').value
+        document.querySelector('#c100_logoUrl').value = document.querySelector('#c100_logoUrl').value
+        document.querySelector('#c100_logoSrc').value = document.querySelector('#c100_logoSrc').value
+        document.querySelector('#c100_logoAltText').value = document.querySelector('#c100_logoAltText').value
+        document.querySelector('#c100_logoAltTextColor').value = document.querySelector('#c100_logoAltTextColor').value
+        document.querySelector('#c100_ctaTextColor').value = document.querySelector('#c100_ctaTextColor').value
+        document.querySelector('#c100_ctaUrl').value = document.querySelector('#c100_ctaUrl').value
+        document.querySelector('#c100_ctaText').value = document.querySelector('#c100_ctaText').value
+    }
+    if (target == 'c101'){
+        let presetValue = document.querySelector('#c101_presetDD').value
+        if (presetValue == 'unum_logo-white_bg-color'){
+            document.querySelector('#c101_backgroundColor').value = '#015294'
+            document.querySelector('#c101_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-white-pad-right.png?raw=true'
+            document.querySelector('#c101_logoAltText').value = "[Unum]"
+            document.querySelector('#c101_logoAltTextColor').value = "white"
+            document.querySelector('#c101_headerbarColor').value = "white"
+            document.querySelector('#c101_descTextColor').value = "white"
+        }
+        if (presetValue == 'colonial_logo-white_bg-color'){
+            document.querySelector('#c101_backgroundColor').value = '#19557F'
+            document.querySelector('#c101_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-white-10r.png?raw=true'
+            document.querySelector('#c101_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c101_logoAltTextColor').value = "white"
+            document.querySelector('#c101_headerbarColor').value = "white"
+            document.querySelector('#c101_descTextColor').value = "white"
+        }
+        if (presetValue == 'unum_logo-color_bg-white'){
+            document.querySelector('#c101_backgroundColor').value = 'white'
+            document.querySelector('#c101_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-pad-right.png?raw=true'
+            document.querySelector('#c101_logoAltText').value = "[Unum]"
+            document.querySelector('#c101_logoAltTextColor').value = "#015294"
+            document.querySelector('#c101_headerbarColor').value = "#015294"
+            document.querySelector('#c101_descTextColor').value = "#015294"
+        }
+        if (presetValue == 'colonial_logo-color_bg-white'){
+            document.querySelector('#c101_backgroundColor').value = 'white'
+            document.querySelector('#c101_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-10r.png?raw=true'
+            document.querySelector('#c101_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c101_logoAltTextColor').value = "#19557F"
+            document.querySelector('#c101_headerbarColor').value = "#19557F"
+            document.querySelector('#c101_descTextColor').value = "#19557F"
+        }
+
+        document.querySelector('#c101_backgroundColor').value = document.querySelector('#c101_backgroundColor').value
+        document.querySelector('#c101_logoUrl').value = document.querySelector('#c101_logoUrl').value
+        document.querySelector('#c101_logoSrc').value = document.querySelector('#c101_logoSrc').value
+        document.querySelector('#c101_logoAltText').value = document.querySelector('#c101_logoAltText').value
+        document.querySelector('#c101_logoAltTextColor').value = document.querySelector('#c101_logoAltTextColor').value
+        document.querySelector('#c101_headerbarColor').value = document.querySelector('#c101_headerbarColor').value
+        document.querySelector('#c101_descTextColor').value = document.querySelector('#c101_descTextColor').value
+        document.querySelector('#c101_descText').value = document.querySelector('#c101_descText').value
+    }
+    if (target == 'c102'){
+        let presetValue = document.querySelector('#c102_presetDD').value
+        if (presetValue == 'unum_logo-white_bg-color'){
+            document.querySelector('#c102_backgroundColor').value = '#015294'
+            document.querySelector('#c102_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-white-pad-right.png?raw=true'
+            document.querySelector('#c102_logoAltText').value = "[Unum]"
+            document.querySelector('#c102_logoAltTextColor').value = "white"
+            document.querySelector('#c102_headerbarColor').value = "white"
+            document.querySelector('#c102_descTextColor').value = "white"
+            document.querySelector('#c102_ctaTextColor').value = "white"
+        }
+        if (presetValue == 'colonial_logo-white_bg-color'){
+            document.querySelector('#c102_backgroundColor').value = '#19557F'
+            document.querySelector('#c102_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-white-10r.png?raw=true'
+            document.querySelector('#c102_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c102_logoAltTextColor').value = "white"
+            document.querySelector('#c102_headerbarColor').value = "white"
+            document.querySelector('#c102_descTextColor').value = "white"
+            document.querySelector('#c102_ctaTextColor').value = "white"
+        }
+        if (presetValue == 'unum_logo-color_bg-white'){
+            document.querySelector('#c102_backgroundColor').value = 'white'
+            document.querySelector('#c102_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/unum-logo-pad-right.png?raw=true'
+            document.querySelector('#c102_logoAltText').value = "[Unum]"
+            document.querySelector('#c102_logoAltTextColor').value = "#015294"
+            document.querySelector('#c102_headerbarColor').value = "#015294"
+            document.querySelector('#c102_descTextColor').value = "#015294"
+            document.querySelector('#c102_ctaTextColor').value = "#015294"
+        }
+        if (presetValue == 'colonial_logo-color_bg-white'){
+            document.querySelector('#c102_backgroundColor').value = 'white'
+            document.querySelector('#c102_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/colonial-logo-10r.png?raw=true'
+            document.querySelector('#c102_logoAltText').value = "[Colonial Life]"
+            document.querySelector('#c102_logoAltTextColor').value = "#19557F"
+            document.querySelector('#c102_headerbarColor').value = "#19557F"
+            document.querySelector('#c102_descTextColor').value = "#19557F"
+            document.querySelector('#c102_ctaTextColor').value = "#19557F"
+        }
+
+        document.querySelector('#c102_backgroundColor').value = document.querySelector('#c102_backgroundColor').value
+        document.querySelector('#c102_logoUrl').value = document.querySelector('#c102_logoUrl').value
+        document.querySelector('#c102_logoSrc').value = document.querySelector('#c102_logoSrc').value
+        document.querySelector('#c102_logoAltText').value = document.querySelector('#c102_logoAltText').value
+        document.querySelector('#c102_logoAltTextColor').value = document.querySelector('#c102_logoAltTextColor').value
+        document.querySelector('#c102_headerbarColor').value = document.querySelector('#c102_headerbarColor').value
+        document.querySelector('#c102_descTextColor').value = document.querySelector('#c102_descTextColor').value
+        document.querySelector('#c102_descText').value = document.querySelector('#c102_descText').value
+        document.querySelector('#c102_ctaTextColor').value = document.querySelector('#c102_ctaTextColor').value
+        document.querySelector('#c102_ctaUrl').value = document.querySelector('#c102_ctaUrl').value
+        document.querySelector('#c102_ctaText').value = document.querySelector('#c102_ctaText').value
+    }
+    if (target == 'c104'){
+        let presetValue = document.querySelector('#c104_presetDD').value
+        if (presetValue == 'paulrevere_logo-color_bg-white'){  
+            document.querySelector('#c104_backgroundColor').value = 'white'
+            document.querySelector('#c104_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/paul-revere-logo-color-10r.png?raw=true'
+            document.querySelector('#c104_logoAltText').value = "[Colonial Voluntary Benefits]"
+            document.querySelector('#c104_logoAltTextColor').value = "#19557F"
+            document.querySelector('#c104_ctaTextColor').value = "#19557F"
+        }
+        if (presetValue == 'paulrevere_logo-white_bg-color'){ 
+            document.querySelector('#c104_backgroundColor').value = '#19557F'
+            document.querySelector('#c104_logoSrc').value = 'https://github.com/unumux/birch-builder-2/blob/master/images/components/paul-revere-logo-white-10r.png?raw=true'
+            document.querySelector('#c104_logoAltText').value = "[Colonial Voluntary Benefits]"
+            document.querySelector('#c104_logoAltTextColor').value = "white"
+            document.querySelector('#c104_ctaTextColor').value = "white"
+        }
+
+        document.querySelector('#c104_backgroundColor').value = document.querySelector('#c104_backgroundColor').value
+        document.querySelector('#c104_logoUrl').value = document.querySelector('#c104_logoUrl').value
+        document.querySelector('#c104_logoSrc').value = document.querySelector('#c104_logoSrc').value
+        document.querySelector('#c104_logoAltText').value = document.querySelector('#c104_logoAltText').value
+        document.querySelector('#c104_logoAltTextColor').value = document.querySelector('#c104_logoAltTextColor').value
+        document.querySelector('#c104_ctaTextColor').value = document.querySelector('#c104_ctaTextColor').value
+        document.querySelector('#c104_ctaUrl').value = document.querySelector('#c104_ctaUrl').value
+        document.querySelector('#c104_ctaText').value = document.querySelector('#c104_ctaText').value
+    }
+    userAutoSaveMe(target);
+}
 function userBlankTo0(guy){ // used for number only input fields
     if (guy.value === ''){
         guy.value = 0;
     }
+}
+function userSetRadio(guy){
+    //console.log('welcome to userSetRadio()...')
+    let targetEl = document.querySelector(`#${guy.dataset.target}`)
+    targetEl.value = guy.value
+    targetEl.onblur()
 }

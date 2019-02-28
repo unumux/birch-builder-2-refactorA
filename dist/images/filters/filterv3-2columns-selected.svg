@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>2columns-deselected</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M23.125,6.25 L6.875,6.25 C5.83945313,6.25 5,7.08945313 5,8.125 L5,21.875 C5,22.9105469 5.83945313,23.75 6.875,23.75 L23.125,23.75 C24.1605469,23.75 25,22.9105469 25,21.875 L25,8.125 C25,7.08945312 24.1605469,6.25 23.125,6.25 Z M13.75,21.25 L7.5,21.25 L7.5,11.25 L13.75,11.25 L13.75,21.25 Z M22.5,21.25 L16.25,21.25 L16.25,11.25 L22.5,11.25 L22.5,21.25 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2264.000000, -401.000000)">
+            <g id="Filter" transform="translate(2234.000000, 401.000000)">
+                <g id="2columns-deselected" transform="translate(30.000000, 0.000000)">
+                    <rect id="Rectangle" fill="#717273" x="0" y="0" width="30" height="30"></rect>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="columns" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

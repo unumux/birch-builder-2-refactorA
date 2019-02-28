@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/edit-tab</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M9.33118033,3.39652055 L12.8001973,7.08323721 C12.9463421,7.23855343 12.9463421,7.49196411 12.8001973,7.64728033 L4.40071504,16.5738759 L0.831704278,16.9948646 C0.354810599,17.0520863 -0.0490106615,16.6229231 0.00483217321,16.1161017 L0.4009616,12.3231161 L8.80044382,3.39652055 C8.94658865,3.24120433 9.18503549,3.24120433 9.33118033,3.39652055 Z M15.5615655,2.46053595 L13.6847581,0.465948668 C13.1001788,-0.155316223 12.1502373,-0.155316223 11.5618121,0.465948668 L10.2003575,1.9128419 C10.0542127,2.06815812 10.0542127,2.3215688 10.2003575,2.47688503 L13.6693744,6.16360168 C13.8155193,6.3189179 14.0539661,6.3189179 14.200111,6.16360168 L15.5615655,4.71670845 C16.1461448,4.09135629 16.1461448,3.08180084 15.5615655,2.46053595 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-270.000000, -72.000000)">
+            <g id="Components-tab" transform="translate(0.000000, 59.000000)">
+                <g id="side-panel-bar" transform="translate(0.000000, 1.000000)">
+                    <g id="Icons/edit-tab" transform="translate(270.000000, 12.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="edit" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

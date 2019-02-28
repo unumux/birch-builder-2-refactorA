@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M22.7535714,14.8359375 L23.5464286,15.6067708 C23.8821429,15.9331597 23.8821429,16.4609375 23.5464286,16.7838542 L16.6071429,23.5338542 C16.2714286,23.8602431 15.7285714,23.8602431 15.3964286,23.5338542 L8.45357143,16.7838542 C8.11785714,16.4574653 8.11785714,15.9296875 8.45357143,15.6067708 L9.24642857,14.8359375 C9.58571429,14.5060764 10.1392857,14.5130208 10.4714286,14.8498264 L14.5714286,19.0338542 L14.5714286,9.0546875 C14.5714286,8.59288194 14.9535714,8.22135417 15.4285714,8.22135417 L16.5714286,8.22135417 C17.0464286,8.22135417 17.4285714,8.59288194 17.4285714,9.0546875 L17.4285714,19.0338542 L21.5285714,14.8498264 C21.8607143,14.5095486 22.4142857,14.5026042 22.7535714,14.8359375 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-899.000000, -736.000000)">
+            <g id="component-ui" transform="translate(579.000000, 401.000000)">
+                <g id="icons/arrow-down-btn" transform="translate(312.000000, 327.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="arrow-down" fill="#024882" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

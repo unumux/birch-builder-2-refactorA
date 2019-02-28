@@ -60,7 +60,7 @@ function mainPopulateLeft(){
         let createdEl4 = document.createElement("div")
         // merge the template code with the comp data first...
         let themeModifiedDataObj = mainMergeDataWithTheme(compObj)
-        let mergedCode = mainMergeDataIntoPlaceholders(themeModifiedDataObj) // this might miss the theme
+        let mergedCode = mainMergeDataIntoPlaceholders(themeModifiedDataObj) 
 
         //compObj.code = mergedCode
         createdEl4.innerHTML = mergedCode
@@ -69,43 +69,6 @@ function mainPopulateLeft(){
 
     }
 }
-
-function mainMergeDataIntoPlaceholders(themeModifiedDataObj){
-    //console.log('######################');
-    //console.log('welome to mainMergeDataIntoPlaceholders2()...');
-    //console.log('code:',code);
-    //console.log('themeModifiedDataObj:',themeModifiedDataObj);
-
-    let compCode = themeModifiedDataObj.code
-    let compData = themeModifiedDataObj.dataObj
-    let mergedCode = compCode
-    
-    // loop through the dataObj looking for dynamic code placeholders
-    const compDataEntries = Object.entries(compData)
-    for (const [fieldLabel, fieldData] of compDataEntries) { // destructured to give names to the data fields
-        //console.log('fieldLabel:',fieldLabel);
-        //console.log('fieldData:',fieldData);
-
-        // generic match merge.  If the placeholder name matches a field name
-        mergedCode = myReplaceAll(mergedCode, `birch_${fieldLabel}_birch`, fieldData)
-        //console.log('mergedCode:',mergedCode)
-    }
-    return mergedCode
-    
-}
-
-
-
-
-
-function myReplace(mainString, substringToReplace, newSubString){
-    return mainString.replace(substringToReplace, newSubString)
-}
-function myReplaceAll(targetString, replaceThis, withThat){
-    const afterAllSwapped = targetString.split(replaceThis).join(withThat)
-    return afterAllSwapped
-}
-
 
 function mainSaveNewOrderAfterDrop(){
     //console.log('welcome to mainSaveNewOrderAfterDrop()...');
@@ -133,4 +96,71 @@ function mainMergeDataWithTheme(theObj){
         theObj.dataObj = Object.assign(theObj.dataObj, theObj.colonialObj);
     }
     return theObj
+}
+
+function mainMergeDataIntoPlaceholders(themeModifiedDataObj){
+    //console.log('welome to mainMergeDataIntoPlaceholders()...');
+    //console.log('themeModifiedDataObj:',themeModifiedDataObj);
+
+    let compCode = themeModifiedDataObj.code
+    let compData = themeModifiedDataObj.dataObj
+    let mergedCode = compCode
+    
+    // loop through the dataObj looking for dynamic code placeholders
+    const compDataEntries = Object.entries(compData)
+    for (const [fieldLabel, fieldData] of compDataEntries) { // destructured to give names to the data fields
+        //console.log('fieldLabel:',fieldLabel);
+        //console.log('fieldData:',fieldData);
+
+        
+        // c090
+        if (fieldLabel == 'linkCode'){
+            // choose either link or text version
+            let selectedCode = compData.linkCode
+            if (compData.linkUrl == ''){
+                selectedCode = `<p style="Margin: 0; color: birch_linkColor_birch; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: normal; margin: 0; padding: 0;">birch_linkText_birch</p>`
+            }
+            // apply optional alignment sub-component code 
+            if (compData.linkAlign == 'center'){
+                selectedCode = subCenterBlockMe(selectedCode)
+            }
+            mergedCode = myReplace(mergedCode, `birch_linkCode_birch`, selectedCode)
+            //console.log('link mergedCode:',mergedCode)
+        }
+
+        // 100, 102, 104
+        if (fieldLabel === 'ctaLinkCode'){   
+            if (compData.ctaText == ''){ // exclude the cta
+                mergedCode = myReplace(mergedCode, `birch_ctaLinkCode_birch`, '')
+            }
+            else if (compData.ctaUrl == ''){ // no link, just text
+                mergedCode = myReplace(mergedCode, `birch_ctaLinkCode_birch`, compData.ctaText)
+            }
+            else{ // include the full cta link
+                mergedCode = myReplace(mergedCode, `birch_ctaLinkCode_birch`, compData.ctaLinkCode)
+            }
+        }
+
+        // generic match merge.  If the placeholder name matches a field name
+        mergedCode = myReplaceAll(mergedCode, `birch_${fieldLabel}_birch`, fieldData)
+        //console.log('mergedCode:',mergedCode)
+    }
+    //console.log('mergedCode:',mergedCode)
+    return mergedCode
+}
+function myReplace(mainString, substringToReplace, newSubString){
+    return mainString.replace(substringToReplace, newSubString)
+}
+function myReplaceAll(targetString, replaceThis, withThat){
+    const afterAllSwapped = targetString.split(replaceThis).join(withThat)
+    return afterAllSwapped
+}
+
+
+
+function subCenterBlockMe(str){
+    //str = myReplaceAll(str, `birch_linkAlign_birch`, 'center')
+    let part1 = `<center data-parsed="" style="min-width: initial !important; width: 100%;">`
+    let part2 = `</center>`
+    return part1 + str + part2
 }

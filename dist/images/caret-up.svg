@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="10px" viewBox="0 0 18 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/caret-up</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M16.7870877,10 L1.21288541,10 C0.134474007,10 -0.405579028,8.72270791 0.356959153,7.97570874 L8.1440603,0.347293247 C8.61675045,-0.115764416 9.38322267,-0.115764416 9.85591282,0.347293247 L17.643014,7.97570874 C18.4056127,8.72270791 17.8654991,10 16.7870877,10 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface-main1" transform="translate(-362.000000, -1560.000000)">
+            <g id="Components-tab" transform="translate(0.000000, 59.000000)">
+                <g id="Body" transform="translate(0.000000, 1479.000000)">
+                    <g id="dropdown">
+                        <g id="icons/caret-up" transform="translate(362.000000, 22.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="caret-up" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
